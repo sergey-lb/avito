@@ -20,7 +20,7 @@ def add_apartment(container, apartment):
 
 def search_apartments(container, search_regions=None, search_price=None):
 
-    result = container
+    result = container.copy()
     if search_regions is not None:
         search_regions = map(str.strip, search_regions)
         search_regions = map(str.lower, search_regions)
