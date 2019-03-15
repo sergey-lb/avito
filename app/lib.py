@@ -1,7 +1,5 @@
 def create_apartment(title, number_of_rooms, area, region, street, house, apartment_number, price):
 
-    region = region.strip()
-
     return {
         'title': title,
         'number_of_rooms': number_of_rooms,
@@ -27,7 +25,7 @@ def search_apartments(container, search_regions=None, search_price=None):
 
         for apartment in result:
             apartment_region = apartment['region']
-            apartment_region = apartment_region.lower()
+            apartment_region = apartment_region.strip().lower()
 
             if apartment_region not in search_regions:
                 result.remove(apartment)
