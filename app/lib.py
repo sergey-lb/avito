@@ -19,20 +19,19 @@ def add_apartment(container, apartment):
 def search_apartments(container, search_regions=None, search_price=None):
 
     result = container.copy()
+
     if search_regions is not None:
         search_regions = map(str.strip, search_regions)
-        search_regions = map(str.lower, search_regions)
+        search_regions = list(map(str.lower, search_regions))
 
-        for apartment in result:
+        def filter_by_regions(apartment):
             apartment_region = apartment['region']
             apartment_region = apartment_region.strip().lower()
+            return apartment_region in search_regions
 
-            if apartment_region not in search_regions:
-                result.remove(apartment)
+        result = list(filter(filter_by_regions, result))
 
     if search_price is not None:
-        for apartment in result:
-            if apartment['price'] >= search_price:
-                result.remove(apartment)
+        result = list(filter(lambda apartment: apartment['price'] < search_price, result))
 
     return result
