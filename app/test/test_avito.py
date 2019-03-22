@@ -179,6 +179,7 @@ def test_search_apartments_with_search_regions_and_price_parameter():
     add_apartment(container, apartment2)
     add_apartment(container, apartment3)
 
+    container_before_search = container[:]
     expected = [apartment3]
 
     result = search_apartments(
@@ -188,3 +189,4 @@ def test_search_apartments_with_search_regions_and_price_parameter():
     )
 
     assert result == expected
+    assert container_before_search == container
